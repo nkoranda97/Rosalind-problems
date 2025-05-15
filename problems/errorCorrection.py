@@ -2,12 +2,13 @@ from Bio import SeqIO
 from tkinter.filedialog import askopenfilename
 from collections import Counter
 
+
 def hammingDistance(seq1, seq2):
     return sum(1 for nuc1, nuc2 in zip(seq1, seq2) if nuc1 != nuc2) == 1
 
 
 def reverseTranscription(seqList):
-    return [seq.translate(str.maketrans('ATCG', 'TAGC'))[::-1] for seq in seqList]
+    return [seq.translate(str.maketrans("ATCG", "TAGC"))[::-1] for seq in seqList]
 
 
 def errorCorrection(seqList):
@@ -20,17 +21,17 @@ def errorCorrection(seqList):
     for seq1 in incorrectSequences:
         for seq2 in correctSequences:
             if hammingDistance(seq1, seq2):
-                mutations.append(f'{seq1}->{seq2}')
+                mutations.append(f"{seq1}->{seq2}")
                 break
-                
+
     return mutations
 
 
 def readFasta():
-    with open(askopenfilename(), 'r') as f:
-        return [str(record.seq) for record in SeqIO.parse(f, 'fasta')]
+    with open(askopenfilename(), "r") as f:
+        return [str(record.seq) for record in SeqIO.parse(f, "fasta")]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     for mutation in errorCorrection(readFasta()):
         print(mutation)

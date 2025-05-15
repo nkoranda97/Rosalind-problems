@@ -7,8 +7,8 @@ def count_subsets(n: int) -> int:
     Returns:
         int: number of subsets of set of size n modulo 1000000
     """
-    
-    return (2 ** n) % 1000000
+
+    return (2**n) % 1000000
 
 
 if __name__ == "__main__":
